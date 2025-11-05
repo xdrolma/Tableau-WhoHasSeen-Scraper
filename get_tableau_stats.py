@@ -57,6 +57,7 @@ class TableauStatsScraper:
         self.use_proxy = use_proxy
         self.proxy = "198.161.14.25:8080"
         self.base_url = "https://tableau.tsl.telus.com"
+        self.site = "tqbi"
         self.downloads_dir = fr"C:\Users\{self.userid}\Downloads"
         self.output_dir = config.get("tableau", "output_dir") or self.downloads_dir
         self.driver = None
@@ -113,7 +114,7 @@ class TableauStatsScraper:
 
         print("Setting up Chrome driver...")
 
-        # Try with webdriver-manager first, then fallback
+        # Try with webdriver-manager
         try:
             self.driver = webdriver.Chrome(options=chrome_options)
             print("✓ Chrome driver setup successful (automatic management)!")
@@ -154,7 +155,7 @@ class TableauStatsScraper:
         Get all workbooks belonging to the user
         Returns: pl.DataFrame: DataFrame with workbook names, URLs, and IDs
         """
-        url = f"{self.base_url}/#/site/tqbi/user/corp.ads/{self.userid}/content"
+        url = f"{self.base_url}/#/site/{self.site}/user/corp.ads/{self.userid}/content"
         print(f"\nNavigating to user page: {url}")
         self.driver.get(url)
         self.driver.maximize_window()
