@@ -57,7 +57,8 @@ class TableauStatsScraper:
         self.use_proxy = use_proxy
         self.proxy = "198.161.14.25:8080"
         self.base_url = "https://tableau.tsl.telus.com"
-        self.downloads_dir = config.get("tableau", "downloads_dir")
+        self.downloads_dir = f"C:/Users/{self.userid}/Downloads/"
+        self.output_dir = config.get("tableau", "output_dir") or self.downloads_dir
         self.driver = None
 
     def setup_driver(self, headless=False):
@@ -516,7 +517,7 @@ class TableauStatsScraper:
 
         timestamp = datetime.now().strftime("%Y%m%d")
         filename = f"tableau-views-by-workbook-and-view-{self.userid}-{timestamp}.xlsx"
-        filepath = os.path.join(self.downloads_dir, filename)
+        filepath = os.path.join(self.output_dir, filename)
 
         print(f"\nSaving results to: {filename}")
 
