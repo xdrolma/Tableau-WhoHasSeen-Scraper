@@ -57,7 +57,7 @@ class TableauStatsScraper:
         self.use_proxy = use_proxy
         self.proxy = "198.161.14.25:8080"
         self.base_url = "https://tableau.tsl.telus.com"
-        self.downloads_dir = f"C:/Users/{self.userid}/Downloads/"
+        self.downloads_dir = fr"C:\Users\{self.userid}\Downloads"
         self.output_dir = config.get("tableau", "output_dir") or self.downloads_dir
         self.driver = None
 
@@ -569,7 +569,7 @@ def main():
     print(f"User ID: {userid}")
     print(f"Refresh data: {refresh_data}")
     print(f"Download directory: C:/Users/{userid}/Downloads/")
-    print(f"Output directory: {os.path.dirname(os.path.abspath(__file__))}/{config.get('tableau', 'output_dir')}")
+    print(f"Output directory: {config.get('tableau', 'output_dir')}")
     print("=" * 80)
 
     # Use context manager for automatic cleanup
