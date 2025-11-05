@@ -568,6 +568,8 @@ def main():
     print("=" * 80)
     print(f"User ID: {userid}")
     print(f"Refresh data: {refresh_data}")
+    print(f"Download directory: C:/Users/{userid}/Downloads/")
+    print(f"Output directory: {os.path.dirname(os.path.abspath(__file__))}/{config.get('tableau', 'output_dir')}")
     print("=" * 80)
 
     # Use context manager for automatic cleanup
